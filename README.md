@@ -36,55 +36,6 @@ const naveen = {
 };
 ```
 
----
-
-## Projects
-
-### Tailor Marketplace
-> *Flutter · Dart · Firebase · Android Studio*
-
-A full-stack mobile marketplace connecting customers with skilled local tailors. Customers browse handcrafted designs, enter body measurements, and place custom orders. Tailors manage their designs, view incoming orders with full measurement breakdowns, and grow their business digitally.
-
-**Key features built:** Role-based login · Design browsing with category filters · Custom measurement forms · Order management dashboard · Production-grade black & white UI
-
----
-
-### OneSpot Finance
-> *TypeScript · React.js · Node.js · PostgreSQL · JWT*
-
-A unified personal finance platform to manage all investments and financial data in one place. Built with a secure JWT authentication system and a robust PostgreSQL backend.
-
-**Key features built:** Investment tracking · Secure auth with JWT · Real-time financial dashboard · RESTful API · Full-stack TypeScript
-
----
-
-### Intelligent Login Security System
-> *Python · Machine Learning · Computer Vision*
-
-An intelligent authentication system that goes beyond passwords — using behavioural and visual signals to detect and prevent unauthorised access attempts.
-
-**Key features built:** Anomaly detection · ML-based threat classification · Security event logging · Real-time alert system
-
----
-
-### Flower CNN Classifier
-> *Python · TensorFlow · Keras · CNN · Deep Learning*
-
-A convolutional neural network that identifies flower species from images — covering Lotus, Tulip, Sunflower, Orchid and more. Demonstrates end-to-end ML pipeline from data preprocessing to model evaluation.
-
-**Key features built:** Custom CNN architecture · Multi-class classification · Image preprocessing pipeline · Model accuracy evaluation
-
----
-
-### Medical Device Predictive Maintenance
-> *Python · Machine Learning · Predictive Analytics*
-
-A predictive maintenance system for medical equipment — forecasting device failures before they happen to reduce downtime in critical healthcare environments.
-
-**Key features built:** Failure prediction model · Time-series analysis · Maintenance scheduling logic · Healthcare-grade reliability focus
-
----
-
 ## Tech Stack
 
 <div align="center">
