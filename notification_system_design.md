@@ -180,3 +180,68 @@ Tradeoff:
 
 Using pagination with Redis caching and realtime websocket updates can improve scalability without increasing DB pressure too much.
 
+# Stage 5
+
+Issues In Current Implementation
+
+The current approach processes notifications one by one.  
+If sending email fails midway, some students may receive notifications while others do not, causing inconsistency.
+ 
+ > For example, if email sending fails for 200 students after DB insert, the system becomes partially completed and difficult to track.
+
+
+# Better Approach
+
+The notification should first be saved reliably in DB and pushed into a queue system like RabbitMQ or Kafka.
+
+Background workers can then:
+- send emails
+- push realtime app notifications
+- retry failed jobs automatically
+
+ > This avoids blocking the main request and improves scalability.
+
+# Should DB Save And Email Happen Together? - NO
+
+> Saving notification data is critical and should succeed first.  
+> Email delivery is an external service and may fail temporarily. 
+> Separating both processes improves reliability and makes retry handling easier.
+
+# Revised Flow
+
+```text
+HR Clicks Notify All
+        |
+Save Notification Job To DB
+        |
+Push Job To Queue
+        |
+-------------------------
+|           |           |
+Email Worker App Worker Retry Worker
+```
+
+# Revised Pseudocode
+
+```python
+function notify_all(student_ids, message):
+
+    notification_id = save_notification(message)
+
+    for student_id in student_ids:
+
+        add_to_queue({
+            "student_id": student_id,
+            "notification_id": notification_id
+        })
+    
+worker process_notification(job):
+
+    send_email(job.student_id)
+
+    push_to_app(job.student_id)
+
+    mark_as_completed(job.notification_id)
+```
+
+Failed jobs can be retried automatically.Queue helps handle sudden traffic spikes.Workers can run in parallel for faster delivery
