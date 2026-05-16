@@ -138,3 +138,45 @@ AND created_at >= NOW() - INTERVAL '7 days';
 - pagination can reduce DB load
 - old notifications can be archived
 - caching unread counts can improve performance
+
+# Stage 4
+
+Performance Improvements
+
+Fetching notifications repeatedly for every page refresh can create unnecessary DB traffic. Instead of depending completely on DB reads, a few optimizations can reduce load significantly.
+
+# Pagination
+
+Only a small set of notifications should be fetched at a time.
+```http
+GET /notifications?page=1&limit=18
+```
+
+Tradeoff:
+- reduces query load
+- frontend needs pagination handling
+
+# Redis Caching
+Unread counts and recently accessed notifications can be cached temporarily.
+Tradeoff:
+- improves response speed
+- cache sync needs attention
+
+# Lazy Loading
+
+Notifications can be loaded only when the user opens the notification section.
+Tradeoff:
+- avoids unnecessary API calls
+- first load may take slightly longer
+
+### WebSocket Updates
+Instead of frequent polling, new notifications can be pushed instantly.
+
+Tradeoff:
+- reduces repeated requests
+- maintaining websocket connections adds complexity
+
+## Final Approach
+
+Using pagination with Redis caching and realtime websocket updates can improve scalability without increasing DB pressure too much.
+
