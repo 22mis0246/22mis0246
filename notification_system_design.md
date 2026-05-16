@@ -245,3 +245,20 @@ worker process_notification(job):
 ```
 
 Failed jobs can be retried automatically.Queue helps handle sudden traffic spikes.Workers can run in parallel for faster delivery
+
+# Stage 6
+
+A priority inbox mechanism was implemented using weighted sorting.
+
+Priority order:
+- Placement
+- Result
+- Event
+
+Notifications are sorted based on:
+- notification priority
+- latest timestamp
+
+> Only top notifications are displayed to reduce unnecessary processing.
+
+The API was protected, so status handling was added for unauthorized responses.
