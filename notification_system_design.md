@@ -85,3 +85,56 @@ CREATE TABLE notifications (
     is_read BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );```
+
+
+# Stage 3
+
+ Query Analysis
+
+ > The query is correct, but it may become slow when notification count increases.
+
+Reasons:
+- SELECT * fetches unnecessary columns
+- sorting large rows is expensive 
+- without indexes DB scans more rows
+
+ Improved Query
+
+```sql
+SELECT id, title, created_at
+FROM notifications
+WHERE student_id = 1042
+AND is_read = false
+ORDER BY created_at DESC;
+```
+Only required fields are fetched which reduces DB load.
+
+
+ # Recommended Index
+```sql
+CREATE INDEX idx_notification_lookup
+ON notifications(student_id, is_read, created_at);
+```
+This improves unread notification lookup and sorting performance.
+
+Should We Add Indexes On Every Column?
+ My ans - NO.
+
+Too many indexes can:
+- slow inserts and updates
+- increase storage usage
+
+Indexes should only be added for frequently searched columns.
+
+# Placement Notification Query
+```sql
+SELECT DISTINCT student_id
+FROM notifications
+WHERE type = 'PLACEMENT'
+AND created_at >= NOW() - INTERVAL '7 days';
+```
+
+# My recomendations to improve according to my experience
+- pagination can reduce DB load
+- old notifications can be archived
+- caching unread counts can improve performance
