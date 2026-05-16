@@ -1,49 +1,65 @@
-const API_URL = "http://4.224.186.213/evaluation-service/notifications";
+const BASE_URL = "http://4.224.186.213/evaluation-service";
+
+const MY_EMAIL = "naveenraj.m2022@vit.ac.in";
+const MY_NAME = "Naveen Raj";
+const MY_ROLL = "22MIS0246";
+const ACCESS_CODE = "SfFuWg";
+
+const CLIENT_ID = "e624e2e3-d858-4633-a61d-e875be7be0d7";
+const CLIENT_SECRET = "bJWCRwzrrKeRkNYS";
 
 const priorityWeight = {
-    Placement: 3,
-    Result: 2,
-    Event: 1
+  Placement: 3,
+  Result: 2,
+  Event: 1,
 };
 
-async function fetchPriorityNotifications() {
-
-    try {
-        const response = await fetch(API_URL);
-
-        console.log("Status:", response.status);
-        const data = await response.json();
-        console.log("API Connected Successfully\n");
-        const notifications = data.notifications || [];
-
-        const sortedNotifications = notifications.sort((a, b) => {
-            const weightA = priorityWeight[a.Type] || 0;
-            const weightB = priorityWeight[b.Type] || 0;
-            if (weightA !== weightB) {
-                return weightB - weightA;
-            }
-
-            return new Date(b.Timestamp) - new Date(a.Timestamp);
-        });
-
-        const topNotifications = sortedNotifications.slice(0, 10);
-        console.log("Top Priority Notifications\n");
-        
-        topNotifications.forEach((notification, index) => {
-            console.log(`${index + 1}. ${notification.Type}`);
-            console.log(`Message: ${notification.Message}`);
-            console.log(`Time: ${notification.Timestamp}`);
-            console.log("---------------------------");
-        });
-
-    } catch (error) {
-
-        console.log("Fetch Failed");
-        console.log(error.message);
-    }
+async function getToken() {
+  const res = await fetch(`${BASE_URL}/auth`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: MY_EMAIL,
+      name: MY_NAME,
+      rollNo: MY_ROLL,
+      accessCode: ACCESS_CODE,
+      clientID: CLIENT_ID,
+      clientSecret: CLIENT_SECRET,
+    }),
+  });
+  const data = await res.json();
+  return data.access_token;
 }
-fetchPriorityNotifications();
-if (response.status === 401) {
-    console.log("Protected API - Authorization token required");
-    return;
+
+async function fetchTopNotifications(token) {
+  const res = await fetch(`${BASE_URL}/notifications`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  const data = await res.json();
+  const notifications = data.notifications || [];
+
+  const sorted = notifications.sort((a, b) => {
+    const wa = priorityWeight[a.Type] || 0;
+    const wb = priorityWeight[b.Type] || 0;
+    if (wa !== wb) return wb - wa;
+    return new Date(b.Timestamp) - new Date(a.Timestamp);
+  });
+
+  const top10 = sorted.slice(0, 10);
+  console.log("Top 10 Priority Notifications");
+  console.log("==============================");
+  top10.forEach((n, i) => {
+    console.log(`${i + 1}. [${n.Type}] ${n.Message}`);
+    console.log(`   Time : ${n.Timestamp}`);
+    console.log("------------------------------");
+  });
 }
+
+async function main() {
+  const token = await getToken();
+  console.log("Token ready!\n");
+  await fetchTopNotifications(token);
+}
+
+main();
