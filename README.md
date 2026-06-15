@@ -6,7 +6,7 @@
 <br/>
 
 <!-- TYPING ANIMATION -->
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=650&lines=Hey+there!+I'm+Naveen+Raj+%F0%9F%91%8B;Pre-Final+Year+%40+VIT+Vellore;M.Tech+Integrated+Software+Engineering;I+Build+Things+That+Matter+%E2%9C%82%EF%B8%8F;Flutter+%7C+React+%7C+Python+%7C+ML;Turning+Ideas+into+Real+Products" alt="Typing SVG"/>
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=650&lines=Hey+there!+I'm+Naveen+Raj+%F0%9F%91%8B;Pre-Final+Year+%40+VIT+Vellore;M.Tech+Integrated+Software+Engineering;I+Build+Things+That+Matter+%E2%9C%82%EF%B8%8F;React+%7C+Python+%7C+ML;Turning+Ideas+into+Real+Products" alt="Typing SVG"/>
 
 <br/><br/>
 
@@ -31,9 +31,9 @@ const naveen = {
   role        : "Software Engineering Student",
   university  : "Vellore Institute of Technology, Vellore",
   degree      : "M.Tech Integrated — Software Engineering",
-  year        : "Pre-Final Year (2022 – 2027)",
+  year        : "Final Year (2022 – 2027)",
   location    : "Vellore, Tamil Nadu, India 🇮🇳",
-  focus       : ["Mobile Apps", "Full Stack Web", "Machine Learning", "Security Systems"],
+  focus       : ["Full Stack Web", "Machine Learning", "Security Systems","AI"],
   currentlyBuilding : "Tailor Marketplace — Flutter + Firebase",
   openTo      : ["Internships", "Collaborations", "Open Source"],
   philosophy  : "I don't just write code. I engineer solutions to real problems.",
@@ -45,12 +45,6 @@ const naveen = {
 ## Tech Arsenal
 
 <div align="center">
-
-### 📱 Mobile
-![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
-![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
-![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 
 ### 🌐 Frontend
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
@@ -72,6 +66,12 @@ const naveen = {
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
 ![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+
+### 📱 Mobile
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 
 ### 🛠️ Tools & Platforms
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
